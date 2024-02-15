@@ -1,0 +1,32 @@
+# List of package associated with the shell such as 'alacritty', 'fish', 'tmux'
+kind: install
+packages:
+  - name: Alacritty
+    packages:
+      - alacritty
+    repositoryCopr:
+      name: "atim/alacritty"
+
+  - name: Cargo
+    packages:
+      - cargo
+
+  - name: Docker
+    packages:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    repositoryExternal:
+      url: "https://download.docker.com/linux/fedora/docker-ce.repo"
+
+  - name: fish-shell
+    packages:
+      - fish
+    repositoryExternal:
+      url: "https://download.opensuse.org/repositories/shells:fish/Fedora_39/shells:fish.repo"
+
+  - name: tmux
+    packages:
+      - tmux
