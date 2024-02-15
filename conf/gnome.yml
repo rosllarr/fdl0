@@ -1,0 +1,7 @@
+- name: dconf-editor
+  packages:
+    - dconf-editor
+
+- name: gnome-tweaks
+  packages:
+    - gnome-tweaks

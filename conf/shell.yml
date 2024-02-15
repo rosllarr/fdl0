@@ -6,20 +6,13 @@
     name: "atim/alacritty"
     user: atim
 
+- name: btop
+  packages:
+    - btop
+
 # - name: Cargo
 #   packages:
 #     - cargo
-
-- name: Docker
-  packages:
-    - docker-ce
-    - docker-ce-cli
-    - containerd.io
-    - docker-buildx-plugin
-    - docker-compose-plugin
-  repositoryExternal:
-    name: docker-ce-stable
-    url: "https://download.docker.com/linux/fedora/docker-ce.repo"
 
 - name: fish-shell
   packages:
@@ -27,6 +20,10 @@
   repositoryExternal:
     name: shells_fish
     url: "https://download.opensuse.org/repositories/shells:fish/Fedora_39/shells:fish.repo"
+
+- name: htop
+  packages:
+    - htop
 
 - name: tmux
   packages:

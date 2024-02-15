@@ -1,0 +1,23 @@
+- name: gstreamer1-plugins-bad-free-extras
+  packages:
+    - gstreamer1-plugins-bad-free-extras
+
+- name: gstreamer1-plugin-openh264
+  packages:
+    - gstreamer1-plugin-openh264
+
+- name: mupdf
+  packages:
+    - mupdf
+
+- name: zathura-pdf-mupdf
+  packages:
+    - zathura-pdf-mupdf
+
+- name: tuxguitar
+  packages:
+    - tuxguitar
+
+- name: youtube-dl
+  packages:
+    - youtube-dl

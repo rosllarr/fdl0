@@ -1,0 +1,27 @@
+- name: Discord
+  packages:
+    - discord
+
+- name: Docker
+  packages:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-buildx-plugin
+    - docker-compose-plugin
+  repositoryExternal:
+    name: docker-ce-stable
+    url: "https://download.docker.com/linux/fedora/docker-ce.repo"
+
+- name: "Google Chrome"
+  packages:
+    - google-chrome-stable
+    - fedora-workstation-repositories # this is repository
+
+- name: openfortivpn
+  packages:
+    - openfortivpn
+
+- name: Telegram
+  packages:
+    - telegram-desktop
