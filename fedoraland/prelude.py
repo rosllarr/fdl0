@@ -51,7 +51,7 @@ else:
 
 # Remove podman to prevent conflicts with docker
 podman = Software(name="Podman", packages=["podman"])
-podman.install()
+podman.remove()
 
 # Install essential packages
 openssl = Software(name="openssl", packages=["openssl"])

@@ -1,0 +1,7 @@
+- name: "tmux config"
+  src: "conf/home/.tmux.conf"
+  dest: "/home/tie/.tmux.conf"
+
+- name: "zathurarc"
+  src: "conf/home/.config/zathura/zathurarc"
+  dest: "/home/tie/.config/zathura/zathurarc"
