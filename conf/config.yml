@@ -1,3 +1,7 @@
+- name: "discord"
+  src: "conf/home/.config/discord/settings.json"
+  dest: "/home/tie/.config/discord/settings.json"
+
 - name: "tmux config"
   src: "conf/home/.tmux.conf"
   dest: "/home/tie/.tmux.conf"

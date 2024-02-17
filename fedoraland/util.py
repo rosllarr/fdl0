@@ -1,5 +1,7 @@
+import os
 import subprocess
 import shutil
+import urllib.request
 
 
 TERMINAL_WIDTH = shutil.get_terminal_size().columns
@@ -23,6 +25,10 @@ def is_repository_exists(repository):
         return True
 
     return False
+
+
+def is_file_exists(file_path):
+    return os.path.isfile(file_path)
 
 
 def enable_repository(repository_url):
@@ -59,3 +65,17 @@ def skip_text(message):
     print("Skipping...")
     print(message)
     print("-" * TERMINAL_WIDTH)
+
+
+def download_binary_file(url, file_path):
+    urllib.request.urlretrieve(url, file_path)
+
+
+def make_file_executable(file_path):
+    os.chmod(file_path, 0o755)
+
+
+def move_to_destination(src, dest):
+    command = f"sudo mv -v {src} {dest}"
+    result = subprocess.run(command, shell=True)
+    result.check_returncode()

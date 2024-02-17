@@ -1,7 +1,8 @@
 import argparse
 import yaml
 from fedoraland.config import Config
-from fedoraland.software import Software
+from fedoraland.usecase.parser import Parser
+# from fedoraland.software import Software
 
 
 def main():
@@ -14,17 +15,20 @@ def main():
     subparser_init = subparsers.add_parser('init')
     subparser_init.add_argument('file', type=argparse.FileType('r'))
 
+    subparser_init = subparsers.add_parser('sync')
+    subparser_init.add_argument('file', type=argparse.FileType('r'))
+
     args = parser.parse_args()
 
     if args.subcommand == 'install':
-        import fedoraland.prelude
+        # import fedoraland.prelude
 
         with open(args.file.name, 'r') as file:
             content = yaml.safe_load(file)
 
-        for software in content:
-            software = Software(**software)
-            software.install()
+        parser = Parser(content)
+        for app in parser.apps:
+            app.install()
 
     if args.subcommand == 'init':
         with open(args.file.name, 'r') as file:
@@ -33,6 +37,14 @@ def main():
         for config in content:
             config = Config(**config)
             config.overwrite_or_create()
+
+    if args.subcommand == 'sync':
+        with open(args.file.name, 'r') as file:
+            content = yaml.safe_load(file)
+
+        for config in content:
+            config = Config(**config)
+            config.sync()
 
 
 if __name__ == '__main__':

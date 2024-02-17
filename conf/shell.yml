@@ -25,6 +25,10 @@
   packages:
     - htop
 
+- name: nvim
+  packages:
+    - neovim
+
 - name: tmux
   packages:
     - tmux

@@ -1,8 +1,10 @@
 - name: Discord
+  kind: packageManager
   packages:
     - discord
 
 - name: Docker
+  kind: packageManager
   packages:
     - docker-ce
     - docker-ce-cli
@@ -14,9 +16,26 @@
     url: "https://download.docker.com/linux/fedora/docker-ce.repo"
 
 - name: "Google Chrome"
+  kind: packageManager
   packages:
     - google-chrome-stable
     - fedora-workstation-repositories # this is repository
+
+- name: kubectl
+  kind: binaryDownload
+  binaries:
+    - kubectl
+  downloadUrl: "https://dl.k8s.io/release/v1.29.2/bin/linux/amd64/kubectl"
+  downloadTo: "/usr/local/bin/"
+
+- name: "kubectx and kubens"
+  kind: gitClone
+  binaries:
+    - kubectx
+    - kubens
+  repoUrl: "https://github.com/ahmetb/kubectx"
+  cloneTo: "/home/tie/.kubectx"
+  linkTo: "/usr/local/bin/"
 
 - name: openfortivpn
   packages:
