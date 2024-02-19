@@ -2,13 +2,33 @@
     "python.testing.unittestArgs": [
         "-v",
         "-s",
-        "./fedoraland",
+        ".",
         "-p",
         "test_*.py"
     ],
     "python.testing.pytestEnabled": true,
     "python.testing.unittestEnabled": false,
     "python.testing.pytestArgs": [
-        "fedoraland"
-    ]
+        "."
+    ],
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#ceddfe",
+        "activityBar.background": "#ceddfe",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#fc6393",
+        "activityBarBadge.foreground": "#15202b",
+        "commandCenter.border": "#15202b99",
+        "sash.hoverBorder": "#ceddfe",
+        "statusBar.background": "#9dbbfc",
+        "statusBar.foreground": "#15202b",
+        "statusBarItem.hoverBackground": "#6b99fa",
+        "statusBarItem.remoteBackground": "#9dbbfc",
+        "statusBarItem.remoteForeground": "#15202b",
+        "titleBar.activeBackground": "#9dbbfc",
+        "titleBar.activeForeground": "#15202b",
+        "titleBar.inactiveBackground": "#9dbbfc99",
+        "titleBar.inactiveForeground": "#15202b99"
+    },
+    "peacock.color": "#9dbbfc"
 }
