@@ -1,5 +1,5 @@
 from fedoraland.software import Software
-from fedoraland.util import (
+from fedoraland.lib.util import (
     done_text,
     enable_repository,
     install_package,

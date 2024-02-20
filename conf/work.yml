@@ -38,9 +38,11 @@
   linkTo: "/usr/local/bin/"
 
 - name: openfortivpn
+  kind: packageManager
   packages:
     - openfortivpn
 
 - name: Telegram
+  kind: packageManager
   packages:
     - telegram-desktop

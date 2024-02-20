@@ -1,6 +1,8 @@
 import argparse
 import yaml
-from fedoraland.config import Config
+from fedoraland.usecase.binary_download import BinaryDownload
+from fedoraland.usecase.package_manager import PackageManager
+# from fedoraland.config import Config
 from fedoraland.usecase.parser import Parser
 # from fedoraland.software import Software
 
@@ -20,31 +22,53 @@ def main():
 
     args = parser.parse_args()
 
+    call_stack = list()
+
     if args.subcommand == 'install':
         # import fedoraland.prelude
 
         with open(args.file.name, 'r') as file:
-            content = yaml.safe_load(file)
+            contents = yaml.safe_load(file)
 
-        parser = Parser(content)
-        for app in parser.apps:
-            app.install()
+        for content in contents:
+            attr = Parser(**content)
+            kind = attr.get("kind")
 
-    if args.subcommand == 'init':
-        with open(args.file.name, 'r') as file:
-            content = yaml.safe_load(file)
+            if kind == "packageManager":
+                app = PackageManager(**attr, call_stack=call_stack)
+                app.install()
 
-        for config in content:
-            config = Config(**config)
-            config.overwrite_or_create()
+            if kind == "binaryDownload":
+                app = BinaryDownload(**attr, call_stack=call_stack)
+                app.install()
 
-    if args.subcommand == 'sync':
-        with open(args.file.name, 'r') as file:
-            content = yaml.safe_load(file)
+            if kind == "gitClone":
+                app = BinaryDownload(**attr, call_stack=call_stack)
+                app.install()
 
-        for config in content:
-            config = Config(**config)
-            config.sync()
+        # parser = Parser(content)
+        # for app in parser.apps:
+        #     app.install(call_stack)
+
+    # if args.subcommand == 'init':
+    #     with open(args.file.name, 'r') as file:
+    #         content = yaml.safe_load(file)
+
+    #     for config in content:
+    #         config = Config(**config)
+    #         config.overwrite_or_create()
+
+    # if args.subcommand == 'sync':
+    #     with open(args.file.name, 'r') as file:
+    #         content = yaml.safe_load(file)
+
+    #     for config in content:
+    #         config = Config(**config)
+    #         config.sync()
+
+    # Display results
+    for stack in call_stack:
+        print(stack)
 
 
 if __name__ == '__main__':

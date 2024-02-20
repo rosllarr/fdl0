@@ -1,15 +1,9 @@
-from fedoraland.usecase.binary_download import BinaryDownload
-from fedoraland.usecase.git_clone import GitClone
-from fedoraland.usecase.package_manager import PackageManager
-
-
 class Parser:
     """
     Take a YAML file and convert it into a appropriate object
     """
 
     def __init__(self, contents):
-        self.apps = list()
         for app in contents:
             kind = app.get("kind")
 
@@ -17,19 +11,17 @@ class Parser:
                 raise ValueError("Kind is required")
 
             if kind == "packageManager":
-                attr = self._check_packageManager_attr(app)
-                self.apps.append((PackageManager(**attr)))
+                return self._check_packageManager_attr(app)
 
             if kind == "binaryDownload":
-                attr = self._check_downloadBinary_attr(app)
-                self.apps.append(BinaryDownload(**attr))
+                return self._check_downloadBinary_attr(app)
 
             if kind == "gitClone":
-                attr = self._check_gitClone_attr(app)
-                self.apps.append(GitClone(**attr))
+                return self._check_gitClone_attr(app)
 
     def _check_packageManager_attr(self, app):
         name = app.get("name")
+        kind = app.get("kind")
         package = app.get("packages")
         repositoryCopr = app.get("repositoryCopr")
         repositoryExternal = app.get("repositoryExternal")
@@ -64,6 +56,7 @@ class Parser:
 
         return {
             "name": name,
+            "kind": kind,
             "packages": package,
             "repositoryCopr": repositoryCopr,
             "repositoryExternal": repositoryExternal,
@@ -71,6 +64,7 @@ class Parser:
 
     def _check_downloadBinary_attr(self, app):
         name = app.get("name")
+        kind = app.get("kind")
         binaries = app.get("binaries")
         downloadUrl = app.get("downloadUrl")
         downloadTo = app.get("downloadTo")
@@ -92,6 +86,7 @@ class Parser:
 
         return {
             "name": name,
+            "kind": kind,
             "binaries": binaries,
             "downloadUrl": downloadUrl,
             "downloadTo": downloadTo,
@@ -99,6 +94,7 @@ class Parser:
 
     def _check_gitClone_attr(self, app):
         name = app.get("name")
+        kind = app.get("kind")
         binaries = app.get("binaries")
         repoUrl = app.get("repoUrl")
         cloneTo = app.get("cloneTo")
@@ -124,6 +120,7 @@ class Parser:
 
         return {
             "name": name,
+            "kind": kind,
             "binaries": binaries,
             "repoUrl": repoUrl,
             "cloneTo": cloneTo,
